@@ -107,7 +107,7 @@ dsh-vue-chat/
 | `ComposerBar.vue` | 输入胶囊：+、权限、斜杠菜单、模型、上下文环、发送/停止 |
 | `AssistantMarkdown.vue` | 助手正文 + 产物胶囊 |
 | `ProducedFiles.vue` | 「产物」条 |
-| `MessageActions.vue` | 复制；仅该轮最后一条已完成回答显示「分叉」 |
+| `MessageActions.vue` | 复制 / 分叉 / 用时；只挂在已结束轮次末尾，悬停才显示 |
 | `*Card.vue` | Search / Read / Terminal / Diff / Web |
 | `TodoPanel.vue` | 任务条（`todos` 投影） |
 | `TurnStatus.vue` | 运行中「Deep diving...」 |
@@ -156,7 +156,7 @@ dsh-vue-chat/
 
 工具卡优先用 mux 帧上的 `view`（`{ for: 'call'|'result', view }`），没有再回退 `tool/result.meta`。
 
-`turn/end` 时给该轮最后一条 `answer` 打 `forkable: true`。消息「分叉」带 `atSeq`；侧栏「分叉会话」不带（锚到最后一轮已完成）。进行中的 turn 会 `fork-unavailable`。
+`turn/end` 时才把用时 / 首 token / tok/s 和 `forkable` 打到该轮最后一条 `answer`。轮次还在跑时（中间还有工具卡）不出现复制和统计。悬停该条消息才显现。消息「分叉」带 `atSeq`；侧栏「分叉会话」不带（锚到最后一轮已完成）。进行中的 turn 会 `fork-unavailable`。
 
 分叉子会话有 `parentSessionId`，**不是** `origin === 'subagent'`。侧栏用 `flattenLineage` 缩进挂在父会话下；只排除 subagent。
 
@@ -211,7 +211,7 @@ dsh-vue-chat/
 
 已对齐：会话列表与工作区分组、权限/模型芯片、任务条、Markdown 与产物胶囊、打开文件、运行中停止、排队、审批与提问、图片、计划芯片、斜杠命令+技能、复制与分叉、侧栏 ⋯、超过 5 条折叠、分叉谱系缩进。
 
-未做（官方有或产品未暴露）：Cmd/Ctrl+Enter steer、图片灯箱、hover 才显示底栏、完整 goal UI、子代理会话、工作区增删改/拖拽、会话搜索、取消归档。
+未做（官方有或产品未暴露）：Cmd/Ctrl+Enter steer、图片灯箱、完整 goal UI、子代理会话、工作区增删改/拖拽、会话搜索、取消归档。
 
 ## 排障
 

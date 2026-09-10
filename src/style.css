@@ -22,3 +22,18 @@ html, body, #app {
   color: var(--text);
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
 }
+
+/* Clock / copy / fork stay mounted for layout, but stay invisible until the
+   message is hovered — same as official data-time-hover-root. Touch devices
+   without hover keep the row visible. */
+@media (hover: hover) {
+  [data-time-hover-root] .msg-actions {
+    opacity: 0;
+    transition: opacity 80ms ease;
+  }
+
+  [data-time-hover-root]:hover .msg-actions,
+  [data-time-hover-root]:focus-within .msg-actions {
+    opacity: 1;
+  }
+}

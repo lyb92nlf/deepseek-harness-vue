@@ -34,14 +34,14 @@ function onMarkdownClick(event) {
 </script>
 
 <template>
-  <div class="assistant" :data-streaming="streaming || undefined">
+  <div class="assistant" data-time-hover-root :data-streaming="streaming || undefined">
     <div class="markdown" v-html="html" @click="onMarkdownClick" />
     <ProducedFiles :paths="files" @open="emit('open', $event)" />
     <div v-if="interrupted" class="stopped">已停止</div>
-    <div v-if="chrome" class="chrome">{{ chrome }}</div>
     <MessageActions
-      v-if="!streaming"
+      v-if="!streaming && canFork"
       :text="text"
+      :chrome="chrome"
       :seq="seq"
       :can-fork="canFork"
       @fork="emit('fork', $event)"
@@ -65,14 +65,6 @@ function onMarkdownClick(event) {
   margin-top: 8px;
   font-size: 13px;
   color: var(--tertiary);
-}
-
-.chrome {
-  margin-top: 12px;
-  font-size: 14px;
-  line-height: 24px;
-  color: var(--tertiary);
-  white-space: nowrap;
 }
 
 .markdown :deep(strong) { font-weight: 600; }

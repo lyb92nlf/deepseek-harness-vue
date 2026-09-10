@@ -371,7 +371,6 @@ export function useMux() {
           answer.streaming = false
           answer.seq = event.seq
           attachProduced()
-          Object.assign(answer, turnMetrics(turn))
           break
         }
         const parts = assistantParts(event.data?.message)
@@ -380,7 +379,6 @@ export function useMux() {
           const next = emptyAnswer(parts.text, false, { seq: event.seq })
           rows.push(next)
           attachProduced()
-          Object.assign(next, turnMetrics(turn))
         }
         break
       }

@@ -581,7 +581,7 @@ async function changeModel(selection) {
         </button>
       </div>
       <template v-for="(row, index) in rows" :key="index">
-        <div v-if="row.type === 'user'" class="user-row">
+        <div v-if="row.type === 'user'" class="user-row" data-time-hover-root>
           <div class="bubble">
             <div v-if="row.images?.length" class="user-images">
               <img

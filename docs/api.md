@@ -451,11 +451,11 @@ resolved：用 `questionRpcId` 或外层 `rpcId` 对上后清面板。
 | `tool/call` | 新 `tool`/`skill` 行，`state: 'running'`。`data.name` / `callId` / `arguments`（JSON 字符串） |
 | `tool/result` | 按 `callId` 合到运行中的行。失败看 `data.error` 或块上 `isError` |
 | `assistant/chunk` | `reasoning-delta` → think；`text-delta` → 流式 answer |
-| `assistant/message` | 结束流式，或回放时一次性插入 think+answer；带 usage |
+| `assistant/message` | 结束流式，或回放时一次性插入 think+answer；**不**挂复制/用时 |
 | `todo/write` | 刷新任务条（下一轮 `turn/start` 会清空） |
 | `turn/start` | 新 turn 状态；live 时 `running=true`；清 todos |
 | `step/start` | 首 token / 步计时 |
-| `turn/end` | 打 `forkable`、产物、用时。`reason.kind`：`aborted`/`interrupted` 标停止；`error` / `max-tokens` 出 notice |
+| `turn/end` | 只给该轮最后一条 `answer` 打 `forkable`、产物、用时。复制/统计默认隐藏，悬停消息才显现。`reason.kind`：`aborted`/`interrupted` 标停止；`error` / `max-tokens` 出 notice |
 | `compaction/start` `summary` `end` | 压缩 notice |
 | `llm/retry` `llm/retry-started` | 重试 notice |
 | `command/run` `command/done` | 斜杠命令 notice |

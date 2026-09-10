@@ -272,7 +272,7 @@ export function createToolRow(name, callId, argsRaw, presented) {
     state: 'running',
     output: '',
     errorSummary: null,
-    body: name === 'skill' || name === 'todo_write' || variant === 'search' || variant === 'read' || variant === 'bash' || variant === 'write' || variant === 'edit'
+    body: name === 'skill' || variant === 'search' || variant === 'read' || variant === 'bash' || variant === 'write' || variant === 'edit'
       ? null
       : deriveBody(variant, argsRaw),
     filePath: deriveFilePath(variant, argsRaw),

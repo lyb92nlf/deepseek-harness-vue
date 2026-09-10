@@ -3,6 +3,7 @@ import { ref } from 'vue'
 
 const props = defineProps({
   text: { type: String, default: '' },
+  chrome: { type: String, default: '' },
   seq: { type: Number, default: undefined },
   canFork: { type: Boolean, default: false },
 })
@@ -25,7 +26,7 @@ async function copy() {
 </script>
 
 <template>
-  <div class="actions">
+  <div class="msg-actions">
     <button type="button" :aria-label="copied ? '已复制' : '复制'" @click="copy">{{ copied ? '已复制' : '复制' }}</button>
     <button
       v-if="canFork && seq != null"
@@ -33,15 +34,25 @@ async function copy() {
       aria-label="在新对话中分支"
       @click="emit('fork', seq)"
     >分叉</button>
+    <span v-if="chrome" class="chrome">{{ chrome }}</span>
   </div>
 </template>
 
 <style scoped>
-.actions {
+.msg-actions {
   display: flex;
   align-items: center;
   gap: 8px;
   margin-top: 6px;
+  min-height: 28px;
+}
+
+.chrome {
+  padding-left: 4px;
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--tertiary);
+  white-space: nowrap;
 }
 
 button {
