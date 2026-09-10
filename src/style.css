@@ -1,0 +1,24 @@
+:root {
+  --bg: rgb(255, 255, 255);
+  --text: rgb(15, 17, 21);
+  --secondary: rgb(97, 102, 107);
+  --tertiary: rgb(129, 133, 140);
+  --caption: rgb(173, 178, 184);
+  --bubble: rgb(237, 243, 254);
+  --code-bg: rgb(249, 250, 251);
+  --code-banner: rgb(241, 243, 245);
+  --border: rgba(0, 0, 0, 0.04);
+  --error: rgb(239, 68, 68);
+  --success: rgb(22, 163, 74);
+}
+
+* { box-sizing: border-box; }
+
+html, body, #app {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
